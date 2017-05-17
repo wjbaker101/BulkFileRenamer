@@ -36,16 +36,15 @@ namespace BulkFileNamer
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Label_Directory = new BulkFileNamer.main.controls.BorderedLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.Panel_Directory_Container = new System.Windows.Forms.Panel();
             this.Button_Directory = new System.Windows.Forms.Button();
             this.TextBox_Directory = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Label_Output = new BulkFileNamer.main.controls.BorderedLabel();
             this.DataGridView_Files = new System.Windows.Forms.DataGridView();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.Button_Rename = new System.Windows.Forms.Button();
-            this.Label_Directory = new BulkFileNamer.main.controls.BorderedLabel();
-            this.Label_Output = new BulkFileNamer.main.controls.BorderedLabel();
             this.tabControl1 = new BulkFileNamer.main.controls.BorderlessTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Button_Sort_Down = new System.Windows.Forms.Button();
@@ -90,6 +89,7 @@ namespace BulkFileNamer
             this.Button_OutputDirectory = new System.Windows.Forms.Button();
             this.TextBox_OutputDirectory = new System.Windows.Forms.TextBox();
             this.Label_OutputDirectory = new BulkFileNamer.main.controls.BorderedLabel();
+            this.Button_Rename = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -163,8 +163,19 @@ namespace BulkFileNamer
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(504, 26);
+            this.panel2.Size = new System.Drawing.Size(504, 24);
             this.panel2.TabIndex = 20;
+            // 
+            // Label_Directory
+            // 
+            this.Label_Directory.AutoSize = true;
+            this.Label_Directory.Location = new System.Drawing.Point(8, 3);
+            this.Label_Directory.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.Label_Directory.Name = "Label_Directory";
+            this.Label_Directory.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.Label_Directory.Size = new System.Drawing.Size(52, 18);
+            this.Label_Directory.TabIndex = 47;
+            this.Label_Directory.Text = "Directory:";
             // 
             // panel3
             // 
@@ -172,7 +183,7 @@ namespace BulkFileNamer
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(195)))), ((int)(((byte)(215)))));
             this.panel3.Controls.Add(this.Panel_Directory_Container);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 26);
+            this.panel3.Location = new System.Drawing.Point(0, 24);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
@@ -218,10 +229,10 @@ namespace BulkFileNamer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Directory.BackColor = System.Drawing.Color.White;
             this.TextBox_Directory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBox_Directory.Location = new System.Drawing.Point(6, 3);
+            this.TextBox_Directory.Location = new System.Drawing.Point(3, 6);
             this.TextBox_Directory.Name = "TextBox_Directory";
             this.TextBox_Directory.ReadOnly = true;
-            this.TextBox_Directory.Size = new System.Drawing.Size(436, 17);
+            this.TextBox_Directory.Size = new System.Drawing.Size(439, 13);
             this.TextBox_Directory.TabIndex = 0;
             // 
             // panel1
@@ -236,6 +247,20 @@ namespace BulkFileNamer
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 8, 0, 2);
             this.panel1.Size = new System.Drawing.Size(504, 32);
             this.panel1.TabIndex = 22;
+            // 
+            // Label_Output
+            // 
+            this.Label_Output.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Output.ForeColor = System.Drawing.Color.Black;
+            this.Label_Output.Location = new System.Drawing.Point(8, 7);
+            this.Label_Output.Margin = new System.Windows.Forms.Padding(3);
+            this.Label_Output.Name = "Label_Output";
+            this.Label_Output.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.Label_Output.Size = new System.Drawing.Size(493, 20);
+            this.Label_Output.TabIndex = 2;
+            this.Label_Output.Text = "Select a directory to add files.";
+            this.Label_Output.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // DataGridView_Files
             // 
@@ -258,6 +283,7 @@ namespace BulkFileNamer
             this.DataGridView_Files.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(249)))));
@@ -267,7 +293,7 @@ namespace BulkFileNamer
             this.DataGridView_Files.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView_Files.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DataGridView_Files.EnableHeadersVisualStyles = false;
-            this.DataGridView_Files.Location = new System.Drawing.Point(8, 72);
+            this.DataGridView_Files.Location = new System.Drawing.Point(8, 70);
             this.DataGridView_Files.Margin = new System.Windows.Forms.Padding(8);
             this.DataGridView_Files.MultiSelect = false;
             this.DataGridView_Files.Name = "DataGridView_Files";
@@ -288,7 +314,7 @@ namespace BulkFileNamer
             this.DataGridView_Files.ShowCellToolTips = false;
             this.DataGridView_Files.ShowEditingIcon = false;
             this.DataGridView_Files.ShowRowErrors = false;
-            this.DataGridView_Files.Size = new System.Drawing.Size(488, 425);
+            this.DataGridView_Files.Size = new System.Drawing.Size(488, 427);
             this.DataGridView_Files.TabIndex = 23;
             // 
             // splitContainer5
@@ -310,49 +336,9 @@ namespace BulkFileNamer
             this.splitContainer5.Panel2.Controls.Add(this.Button_Rename);
             this.splitContainer5.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer5.Size = new System.Drawing.Size(503, 537);
-            this.splitContainer5.SplitterDistance = 506;
+            this.splitContainer5.SplitterDistance = 500;
             this.splitContainer5.SplitterWidth = 1;
             this.splitContainer5.TabIndex = 0;
-            // 
-            // Button_Rename
-            // 
-            this.Button_Rename.BackColor = System.Drawing.Color.White;
-            this.Button_Rename.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Button_Rename.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Button_Rename.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
-            this.Button_Rename.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_Rename.Location = new System.Drawing.Point(3, 3);
-            this.Button_Rename.Name = "Button_Rename";
-            this.Button_Rename.Size = new System.Drawing.Size(497, 24);
-            this.Button_Rename.TabIndex = 47;
-            this.Button_Rename.Text = "Rename";
-            this.Button_Rename.UseVisualStyleBackColor = false;
-            this.Button_Rename.Click += new System.EventHandler(this.Button_Rename_Click);
-            // 
-            // Label_Directory
-            // 
-            this.Label_Directory.AutoSize = true;
-            this.Label_Directory.Location = new System.Drawing.Point(8, 3);
-            this.Label_Directory.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.Label_Directory.Name = "Label_Directory";
-            this.Label_Directory.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Directory.Size = new System.Drawing.Size(68, 20);
-            this.Label_Directory.TabIndex = 47;
-            this.Label_Directory.Text = "Directory:";
-            // 
-            // Label_Output
-            // 
-            this.Label_Output.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Output.ForeColor = System.Drawing.Color.Black;
-            this.Label_Output.Location = new System.Drawing.Point(8, 7);
-            this.Label_Output.Margin = new System.Windows.Forms.Padding(3);
-            this.Label_Output.Name = "Label_Output";
-            this.Label_Output.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Output.Size = new System.Drawing.Size(493, 20);
-            this.Label_Output.TabIndex = 2;
-            this.Label_Output.Text = "Select a directory to add files.";
-            this.Label_Output.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabControl1
             // 
@@ -364,7 +350,7 @@ namespace BulkFileNamer
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 5);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(503, 506);
+            this.tabControl1.Size = new System.Drawing.Size(503, 500);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -381,10 +367,10 @@ namespace BulkFileNamer
             this.tabPage1.Controls.Add(this.Label_Extension);
             this.tabPage1.Controls.Add(this.TextBox_Contains);
             this.tabPage1.Controls.Add(this.Label_Contains);
-            this.tabPage1.Location = new System.Drawing.Point(0, 26);
+            this.tabPage1.Location = new System.Drawing.Point(0, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage1.Size = new System.Drawing.Size(503, 480);
+            this.tabPage1.Size = new System.Drawing.Size(503, 476);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Filter and Sorting";
             // 
@@ -409,13 +395,14 @@ namespace BulkFileNamer
             this.Button_ApplyFilterSort.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Button_ApplyFilterSort.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
             this.Button_ApplyFilterSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_ApplyFilterSort.Location = new System.Drawing.Point(11, 295);
+            this.Button_ApplyFilterSort.Location = new System.Drawing.Point(11, 293);
             this.Button_ApplyFilterSort.MaximumSize = new System.Drawing.Size(150, 100);
             this.Button_ApplyFilterSort.Name = "Button_ApplyFilterSort";
             this.Button_ApplyFilterSort.Size = new System.Drawing.Size(150, 35);
             this.Button_ApplyFilterSort.TabIndex = 46;
             this.Button_ApplyFilterSort.Text = "Apply Changes";
             this.Button_ApplyFilterSort.UseVisualStyleBackColor = false;
+            this.Button_ApplyFilterSort.Click += new System.EventHandler(this.Button_ApplyFilterSort_Click);
             // 
             // Button_Sort_Up
             // 
@@ -424,7 +411,7 @@ namespace BulkFileNamer
             this.Button_Sort_Up.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(107)))), ((int)(((byte)(150)))));
             this.Button_Sort_Up.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(225)))), ((int)(((byte)(235)))));
             this.Button_Sort_Up.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_Sort_Up.Location = new System.Drawing.Point(167, 156);
+            this.Button_Sort_Up.Location = new System.Drawing.Point(167, 155);
             this.Button_Sort_Up.Name = "Button_Sort_Up";
             this.Button_Sort_Up.Size = new System.Drawing.Size(25, 52);
             this.Button_Sort_Up.TabIndex = 0;
@@ -439,7 +426,7 @@ namespace BulkFileNamer
             this.CheckBox_SortAscending.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_SortAscending.Location = new System.Drawing.Point(11, 270);
             this.CheckBox_SortAscending.Name = "CheckBox_SortAscending";
-            this.CheckBox_SortAscending.Size = new System.Drawing.Size(115, 19);
+            this.CheckBox_SortAscending.Size = new System.Drawing.Size(103, 17);
             this.CheckBox_SortAscending.TabIndex = 41;
             this.CheckBox_SortAscending.Text = "Ascending order";
             this.CheckBox_SortAscending.UseVisualStyleBackColor = true;
@@ -447,10 +434,9 @@ namespace BulkFileNamer
             // ListBox_Sort
             // 
             this.ListBox_Sort.FormattingEnabled = true;
-            this.ListBox_Sort.ItemHeight = 15;
             this.ListBox_Sort.Location = new System.Drawing.Point(11, 155);
             this.ListBox_Sort.Name = "ListBox_Sort";
-            this.ListBox_Sort.Size = new System.Drawing.Size(150, 109);
+            this.ListBox_Sort.Size = new System.Drawing.Size(150, 108);
             this.ListBox_Sort.TabIndex = 39;
             // 
             // Label_Sort
@@ -460,7 +446,7 @@ namespace BulkFileNamer
             this.Label_Sort.Margin = new System.Windows.Forms.Padding(3);
             this.Label_Sort.Name = "Label_Sort";
             this.Label_Sort.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Sort.Size = new System.Drawing.Size(37, 20);
+            this.Label_Sort.Size = new System.Drawing.Size(29, 18);
             this.Label_Sort.TabIndex = 37;
             this.Label_Sort.Text = "Sort:";
             // 
@@ -469,7 +455,7 @@ namespace BulkFileNamer
             this.TextBox_Extension.Location = new System.Drawing.Point(11, 97);
             this.TextBox_Extension.MaximumSize = new System.Drawing.Size(150, 100);
             this.TextBox_Extension.Name = "TextBox_Extension";
-            this.TextBox_Extension.Size = new System.Drawing.Size(150, 24);
+            this.TextBox_Extension.Size = new System.Drawing.Size(150, 20);
             this.TextBox_Extension.TabIndex = 27;
             // 
             // Label_Extension
@@ -479,7 +465,7 @@ namespace BulkFileNamer
             this.Label_Extension.Margin = new System.Windows.Forms.Padding(3);
             this.Label_Extension.Name = "Label_Extension";
             this.Label_Extension.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Extension.Size = new System.Drawing.Size(102, 20);
+            this.Label_Extension.Size = new System.Drawing.Size(75, 18);
             this.Label_Extension.TabIndex = 19;
             this.Label_Extension.Text = "File Extension:";
             // 
@@ -489,7 +475,7 @@ namespace BulkFileNamer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_Contains.Location = new System.Drawing.Point(11, 38);
             this.TextBox_Contains.Name = "TextBox_Contains";
-            this.TextBox_Contains.Size = new System.Drawing.Size(480, 24);
+            this.TextBox_Contains.Size = new System.Drawing.Size(480, 20);
             this.TextBox_Contains.TabIndex = 17;
             // 
             // Label_Contains
@@ -499,7 +485,7 @@ namespace BulkFileNamer
             this.Label_Contains.Margin = new System.Windows.Forms.Padding(3);
             this.Label_Contains.Name = "Label_Contains";
             this.Label_Contains.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Contains.Size = new System.Drawing.Size(162, 20);
+            this.Label_Contains.Size = new System.Drawing.Size(121, 18);
             this.Label_Contains.TabIndex = 0;
             this.Label_Contains.Text = "Rename if contains text:";
             // 
@@ -522,10 +508,10 @@ namespace BulkFileNamer
             this.tabPage2.Controls.Add(this.CheckBox_OriginalName);
             this.tabPage2.Controls.Add(this.TextBox_NewFileName);
             this.tabPage2.Controls.Add(this.Label_FileName);
-            this.tabPage2.Location = new System.Drawing.Point(0, 26);
+            this.tabPage2.Location = new System.Drawing.Point(0, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage2.Size = new System.Drawing.Size(503, 480);
+            this.tabPage2.Size = new System.Drawing.Size(503, 485);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rename Rules";
             // 
@@ -559,7 +545,7 @@ namespace BulkFileNamer
             this.TextBox_Insert.Location = new System.Drawing.Point(0, 33);
             this.TextBox_Insert.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.TextBox_Insert.Name = "TextBox_Insert";
-            this.TextBox_Insert.Size = new System.Drawing.Size(293, 24);
+            this.TextBox_Insert.Size = new System.Drawing.Size(293, 20);
             this.TextBox_Insert.TabIndex = 23;
             // 
             // TextBox_AtText
@@ -568,7 +554,7 @@ namespace BulkFileNamer
             this.TextBox_AtText.Location = new System.Drawing.Point(299, 33);
             this.TextBox_AtText.MaxLength = 5;
             this.TextBox_AtText.Name = "TextBox_AtText";
-            this.TextBox_AtText.Size = new System.Drawing.Size(75, 24);
+            this.TextBox_AtText.Size = new System.Drawing.Size(75, 20);
             this.TextBox_AtText.TabIndex = 26;
             this.TextBox_AtText.Text = "0";
             this.TextBox_AtText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -580,7 +566,7 @@ namespace BulkFileNamer
             this.Label_Insert.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.Label_Insert.Name = "Label_Insert";
             this.Label_Insert.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Insert.Size = new System.Drawing.Size(47, 20);
+            this.Label_Insert.Size = new System.Drawing.Size(36, 18);
             this.Label_Insert.TabIndex = 2;
             this.Label_Insert.Text = "Insert:";
             // 
@@ -591,9 +577,9 @@ namespace BulkFileNamer
             this.RadioButton_FromStart.Checked = true;
             this.RadioButton_FromStart.Enabled = false;
             this.RadioButton_FromStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
-            this.RadioButton_FromStart.Location = new System.Drawing.Point(380, 8);
+            this.RadioButton_FromStart.Location = new System.Drawing.Point(380, 10);
             this.RadioButton_FromStart.Name = "RadioButton_FromStart";
-            this.RadioButton_FromStart.Size = new System.Drawing.Size(95, 19);
+            this.RadioButton_FromStart.Size = new System.Drawing.Size(87, 17);
             this.RadioButton_FromStart.TabIndex = 32;
             this.RadioButton_FromStart.TabStop = true;
             this.RadioButton_FromStart.Text = "From START";
@@ -606,7 +592,7 @@ namespace BulkFileNamer
             this.Label_AtText.Margin = new System.Windows.Forms.Padding(3);
             this.Label_AtText.Name = "Label_AtText";
             this.Label_AtText.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_AtText.Size = new System.Drawing.Size(23, 20);
+            this.Label_AtText.Size = new System.Drawing.Size(20, 18);
             this.Label_AtText.TabIndex = 24;
             this.Label_AtText.Text = "At:";
             // 
@@ -615,9 +601,9 @@ namespace BulkFileNamer
             this.RadioButton_FromEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RadioButton_FromEnd.AutoSize = true;
             this.RadioButton_FromEnd.Enabled = false;
-            this.RadioButton_FromEnd.Location = new System.Drawing.Point(380, 39);
+            this.RadioButton_FromEnd.Location = new System.Drawing.Point(380, 41);
             this.RadioButton_FromEnd.Name = "RadioButton_FromEnd";
-            this.RadioButton_FromEnd.Size = new System.Drawing.Size(83, 19);
+            this.RadioButton_FromEnd.Size = new System.Drawing.Size(74, 17);
             this.RadioButton_FromEnd.TabIndex = 30;
             this.RadioButton_FromEnd.Text = "From END";
             this.RadioButton_FromEnd.UseVisualStyleBackColor = true;
@@ -650,7 +636,7 @@ namespace BulkFileNamer
             this.TextBox_WithText.Location = new System.Drawing.Point(248, 28);
             this.TextBox_WithText.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.TextBox_WithText.Name = "TextBox_WithText";
-            this.TextBox_WithText.Size = new System.Drawing.Size(239, 24);
+            this.TextBox_WithText.Size = new System.Drawing.Size(239, 20);
             this.TextBox_WithText.TabIndex = 23;
             // 
             // TextBox_Replace
@@ -661,7 +647,7 @@ namespace BulkFileNamer
             this.TextBox_Replace.Location = new System.Drawing.Point(0, 28);
             this.TextBox_Replace.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.TextBox_Replace.Name = "TextBox_Replace";
-            this.TextBox_Replace.Size = new System.Drawing.Size(242, 24);
+            this.TextBox_Replace.Size = new System.Drawing.Size(242, 20);
             this.TextBox_Replace.TabIndex = 23;
             // 
             // Label_WithText
@@ -671,7 +657,7 @@ namespace BulkFileNamer
             this.Label_WithText.Margin = new System.Windows.Forms.Padding(3);
             this.Label_WithText.Name = "Label_WithText";
             this.Label_WithText.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_WithText.Size = new System.Drawing.Size(39, 19);
+            this.Label_WithText.Size = new System.Drawing.Size(32, 18);
             this.Label_WithText.TabIndex = 3;
             this.Label_WithText.Text = "With:";
             // 
@@ -682,7 +668,7 @@ namespace BulkFileNamer
             this.Label_Replace.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.Label_Replace.Name = "Label_Replace";
             this.Label_Replace.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Replace.Size = new System.Drawing.Size(64, 19);
+            this.Label_Replace.Size = new System.Drawing.Size(50, 18);
             this.Label_Replace.TabIndex = 2;
             this.Label_Replace.Text = "Replace:";
             // 
@@ -693,7 +679,7 @@ namespace BulkFileNamer
             this.CheckBox_IndexingFormat.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_IndexingFormat.Location = new System.Drawing.Point(92, 357);
             this.CheckBox_IndexingFormat.Name = "CheckBox_IndexingFormat";
-            this.CheckBox_IndexingFormat.Size = new System.Drawing.Size(119, 19);
+            this.CheckBox_IndexingFormat.Size = new System.Drawing.Size(103, 17);
             this.CheckBox_IndexingFormat.TabIndex = 49;
             this.CheckBox_IndexingFormat.Text = "Format Numbers";
             this.CheckBox_IndexingFormat.UseVisualStyleBackColor = true;
@@ -703,7 +689,7 @@ namespace BulkFileNamer
             this.TextBox_IndexingStart.Location = new System.Drawing.Point(11, 325);
             this.TextBox_IndexingStart.MaxLength = 5;
             this.TextBox_IndexingStart.Name = "TextBox_IndexingStart";
-            this.TextBox_IndexingStart.Size = new System.Drawing.Size(75, 24);
+            this.TextBox_IndexingStart.Size = new System.Drawing.Size(75, 20);
             this.TextBox_IndexingStart.TabIndex = 44;
             this.TextBox_IndexingStart.Text = "1";
             this.TextBox_IndexingStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -713,7 +699,7 @@ namespace BulkFileNamer
             this.TextBox_IndexingLength.Location = new System.Drawing.Point(92, 325);
             this.TextBox_IndexingLength.MaxLength = 5;
             this.TextBox_IndexingLength.Name = "TextBox_IndexingLength";
-            this.TextBox_IndexingLength.Size = new System.Drawing.Size(75, 24);
+            this.TextBox_IndexingLength.Size = new System.Drawing.Size(75, 20);
             this.TextBox_IndexingLength.TabIndex = 47;
             this.TextBox_IndexingLength.Text = "3";
             this.TextBox_IndexingLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -740,7 +726,7 @@ namespace BulkFileNamer
             this.Label_IndexingLength.Margin = new System.Windows.Forms.Padding(3);
             this.Label_IndexingLength.Name = "Label_IndexingLength";
             this.Label_IndexingLength.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_IndexingLength.Size = new System.Drawing.Size(94, 20);
+            this.Label_IndexingLength.Size = new System.Drawing.Size(72, 18);
             this.Label_IndexingLength.TabIndex = 32;
             this.Label_IndexingLength.Text = "Index Length:";
             // 
@@ -751,7 +737,7 @@ namespace BulkFileNamer
             this.Label_IndexingStart.Margin = new System.Windows.Forms.Padding(3);
             this.Label_IndexingStart.Name = "Label_IndexingStart";
             this.Label_IndexingStart.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_IndexingStart.Size = new System.Drawing.Size(80, 20);
+            this.Label_IndexingStart.Size = new System.Drawing.Size(61, 18);
             this.Label_IndexingStart.TabIndex = 42;
             this.Label_IndexingStart.Text = "Start Index:";
             // 
@@ -775,7 +761,7 @@ namespace BulkFileNamer
             this.CheckBox_IndexingPrefix.AutoSize = true;
             this.CheckBox_IndexingPrefix.Location = new System.Drawing.Point(11, 272);
             this.CheckBox_IndexingPrefix.Name = "CheckBox_IndexingPrefix";
-            this.CheckBox_IndexingPrefix.Size = new System.Drawing.Size(57, 19);
+            this.CheckBox_IndexingPrefix.Size = new System.Drawing.Size(52, 17);
             this.CheckBox_IndexingPrefix.TabIndex = 35;
             this.CheckBox_IndexingPrefix.Text = "Prefix";
             this.CheckBox_IndexingPrefix.UseVisualStyleBackColor = true;
@@ -787,7 +773,7 @@ namespace BulkFileNamer
             this.CheckBox_IndexingEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_IndexingEnabled.Location = new System.Drawing.Point(11, 246);
             this.CheckBox_IndexingEnabled.Name = "CheckBox_IndexingEnabled";
-            this.CheckBox_IndexingEnabled.Size = new System.Drawing.Size(72, 19);
+            this.CheckBox_IndexingEnabled.Size = new System.Drawing.Size(65, 17);
             this.CheckBox_IndexingEnabled.TabIndex = 33;
             this.CheckBox_IndexingEnabled.Text = "Enabled";
             this.CheckBox_IndexingEnabled.UseVisualStyleBackColor = true;
@@ -800,7 +786,7 @@ namespace BulkFileNamer
             this.Label_Indexing.Margin = new System.Windows.Forms.Padding(3);
             this.Label_Indexing.Name = "Label_Indexing";
             this.Label_Indexing.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_Indexing.Size = new System.Drawing.Size(66, 20);
+            this.Label_Indexing.Size = new System.Drawing.Size(50, 18);
             this.Label_Indexing.TabIndex = 31;
             this.Label_Indexing.Text = "Indexing:";
             // 
@@ -809,7 +795,7 @@ namespace BulkFileNamer
             this.CheckBox_OriginalName.AutoSize = true;
             this.CheckBox_OriginalName.Location = new System.Drawing.Point(11, 70);
             this.CheckBox_OriginalName.Name = "CheckBox_OriginalName";
-            this.CheckBox_OriginalName.Size = new System.Drawing.Size(145, 19);
+            this.CheckBox_OriginalName.Size = new System.Drawing.Size(125, 17);
             this.CheckBox_OriginalName.TabIndex = 24;
             this.CheckBox_OriginalName.Text = "Edit original file name";
             this.CheckBox_OriginalName.UseVisualStyleBackColor = true;
@@ -821,7 +807,7 @@ namespace BulkFileNamer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_NewFileName.Location = new System.Drawing.Point(11, 38);
             this.TextBox_NewFileName.Name = "TextBox_NewFileName";
-            this.TextBox_NewFileName.Size = new System.Drawing.Size(487, 24);
+            this.TextBox_NewFileName.Size = new System.Drawing.Size(487, 20);
             this.TextBox_NewFileName.TabIndex = 22;
             // 
             // Label_FileName
@@ -831,7 +817,7 @@ namespace BulkFileNamer
             this.Label_FileName.Margin = new System.Windows.Forms.Padding(3);
             this.Label_FileName.Name = "Label_FileName";
             this.Label_FileName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_FileName.Size = new System.Drawing.Size(109, 20);
+            this.Label_FileName.Size = new System.Drawing.Size(82, 18);
             this.Label_FileName.TabIndex = 1;
             this.Label_FileName.Text = "New File Name:";
             // 
@@ -841,10 +827,10 @@ namespace BulkFileNamer
             this.tabPage3.Controls.Add(this.CheckBox_OutputCopy);
             this.tabPage3.Controls.Add(this.Panel_OutputDirectory_Container);
             this.tabPage3.Controls.Add(this.Label_OutputDirectory);
-            this.tabPage3.Location = new System.Drawing.Point(0, 26);
+            this.tabPage3.Location = new System.Drawing.Point(0, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage3.Size = new System.Drawing.Size(503, 480);
+            this.tabPage3.Size = new System.Drawing.Size(503, 485);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Output";
             // 
@@ -853,7 +839,7 @@ namespace BulkFileNamer
             this.CheckBox_OutputCopy.AutoSize = true;
             this.CheckBox_OutputCopy.Location = new System.Drawing.Point(11, 72);
             this.CheckBox_OutputCopy.Name = "CheckBox_OutputCopy";
-            this.CheckBox_OutputCopy.Size = new System.Drawing.Size(85, 19);
+            this.CheckBox_OutputCopy.Size = new System.Drawing.Size(79, 17);
             this.CheckBox_OutputCopy.TabIndex = 33;
             this.CheckBox_OutputCopy.Text = "Make copy";
             this.CheckBox_OutputCopy.UseVisualStyleBackColor = true;
@@ -895,11 +881,10 @@ namespace BulkFileNamer
             // 
             this.TextBox_OutputDirectory.BackColor = System.Drawing.Color.White;
             this.TextBox_OutputDirectory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBox_OutputDirectory.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TextBox_OutputDirectory.Location = new System.Drawing.Point(3, 3);
+            this.TextBox_OutputDirectory.Location = new System.Drawing.Point(3, 6);
             this.TextBox_OutputDirectory.Name = "TextBox_OutputDirectory";
             this.TextBox_OutputDirectory.ReadOnly = true;
-            this.TextBox_OutputDirectory.Size = new System.Drawing.Size(431, 17);
+            this.TextBox_OutputDirectory.Size = new System.Drawing.Size(431, 13);
             this.TextBox_OutputDirectory.TabIndex = 0;
             // 
             // Label_OutputDirectory
@@ -909,9 +894,24 @@ namespace BulkFileNamer
             this.Label_OutputDirectory.Margin = new System.Windows.Forms.Padding(3);
             this.Label_OutputDirectory.Name = "Label_OutputDirectory";
             this.Label_OutputDirectory.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Label_OutputDirectory.Size = new System.Drawing.Size(114, 20);
+            this.Label_OutputDirectory.Size = new System.Drawing.Size(87, 18);
             this.Label_OutputDirectory.TabIndex = 2;
             this.Label_OutputDirectory.Text = "Output Directory:";
+            // 
+            // Button_Rename
+            // 
+            this.Button_Rename.BackColor = System.Drawing.Color.White;
+            this.Button_Rename.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_Rename.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Button_Rename.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
+            this.Button_Rename.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_Rename.Location = new System.Drawing.Point(3, 3);
+            this.Button_Rename.Name = "Button_Rename";
+            this.Button_Rename.Size = new System.Drawing.Size(497, 30);
+            this.Button_Rename.TabIndex = 47;
+            this.Button_Rename.Text = "Rename";
+            this.Button_Rename.UseVisualStyleBackColor = false;
+            this.Button_Rename.Click += new System.EventHandler(this.Button_Rename_Click);
             // 
             // MainForm
             // 

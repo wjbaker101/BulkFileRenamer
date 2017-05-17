@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using BulkFileNamer.main.utils;
 using BulkFileNamer.main.utils.gui;
+using BulkFileNamer.main.utils.options;
 
 namespace BulkFileNamer
 {
@@ -32,15 +33,25 @@ namespace BulkFileNamer
 
             this.Font = GuiStyle.Fonts.REGULAR;
 
+            // Displays the sorting options in the ListBox
+            for (int i = 0; i < SortOptions.OPTIONS.Length; ++i)
+            {
+                ListBox_Sort.Items.Add(SortOptions.OPTIONS[i]);
+            }
+
+            // Creates the binding source
             filesBindingSource = new BindingSource();
+            
             DataGridView_Files.DataSource = filesBindingSource;
             DataGridView_Files.AutoGenerateColumns = false;
 
+            // Creates the "original file name" column
             DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
             column.DataPropertyName = "OriginalFileName";
             column.Name = "Original File Name";
             DataGridView_Files.Columns.Add(column);
 
+            // Creates the "renamed file name" column
             column = new DataGridViewTextBoxColumn();
             column.DataPropertyName = "RenamedFileName";
             column.Name = "Renamed File Name";
@@ -69,6 +80,7 @@ namespace BulkFileNamer
 
         private void CheckBox_IndexingEnabled_CheckedChanged(object sender, EventArgs e)
         {
+            // Creates an array of controls that should be enabled or disabled
             Control[] indexingControls =
             {
                 CheckBox_IndexingPrefix,
@@ -77,12 +89,17 @@ namespace BulkFileNamer
                 CheckBox_IndexingFormat
             };
 
+            // Sets Enabled property of each control
             foreach (Control control in indexingControls)
             {
                 control.Enabled = CheckBox_IndexingEnabled.Checked;
             }
         }
 
+        /// <summary>
+        /// Called when the user presses the reset button in the "Rename" tab.
+        /// Sets editable controls to their default value.
+        /// </summary>
         private void Button_ResetRename_Click(object sender, EventArgs e)
         {
             TextBox_NewFileName.Text = String.Empty;
@@ -101,26 +118,38 @@ namespace BulkFileNamer
             CheckBox_IndexingFormat.Checked = true;
         }
 
+        /// <summary>
+        /// Called when the user presses the button to move the sort item UP.
+        /// </summary>
         private void Button_Sort_Up_Click(object sender, EventArgs e)
         {
-            moveSortItem(true);
+            swapSortItem(-1);
         }
 
+        /// <summary>
+        /// Called when the user presses the button to move the sort item DOWN.
+        /// </summary>
         private void Button_Sort_Down_Click(object sender, EventArgs e)
         {
-            moveSortItem(false);
+            swapSortItem(1);
         }
 
-        private void moveSortItem(bool moveUp)
+        /// <summary>
+        /// Swaps 2 items in the sort ListBox.
+        /// </summary>
+        /// <param name="direction">The offset of the swap from the currently selected item.</param>
+        private void swapSortItem(int direction)
         {
-            if (ListBox_Sort.SelectedIndex > -1)
+            if (ListBox_Sort.SelectedIndex > -1) // Checks whether an item has been selected
             {
-                int newPosition = ListBox_Sort.SelectedIndex + (moveUp ? -1 : 1);
+                int newPosition = ListBox_Sort.SelectedIndex + direction; // Gets the new position of the selected item
 
+                // Checks whether the new position is within the bounds of the list
                 if (newPosition > -1 && newPosition < ListBox_Sort.Items.Count)
                 {
-                    object prevItem = ListBox_Sort.Items[newPosition];
+                    object prevItem = ListBox_Sort.Items[newPosition]; // Gets the object at the new position
 
+                    // Performs the swap
                     ListBox_Sort.Items[newPosition] = ListBox_Sort.SelectedItem;
                     ListBox_Sort.Items[ListBox_Sort.SelectedIndex] = prevItem;
                     ListBox_Sort.SelectedIndex = newPosition;
@@ -128,36 +157,62 @@ namespace BulkFileNamer
             }
         }
 
+        /// <summary>
+        /// Called when the user presses the button to select a directory.
+        /// </summary>
         private void Button_Directory_Click(object sender, EventArgs e)
         {
-            string newDirectory = openFolderDialog();
+            string newDirectory = openFolderDialog(); // Stores the user's choice
 
-            if (!newDirectory.Equals(string.Empty))
+            if (!newDirectory.Equals(string.Empty)) // Checks if the user actually chose a directory
             {
-                TextBox_Directory.Text = newDirectory;
+                TextBox_Directory.Text = newDirectory; // Updates the text in the textbox
 
-                AddFilesToTable();
+                AddFilesToTable(); // Displays the files in the folder
             }
         }
 
+        /// <summary>
+        /// Called when the user presses the button to select an output directory.
+        /// </summary>
         private void Button_OutputDirectory_Click(object sender, EventArgs e)
         {
-            TextBox_OutputDirectory.Text = openFolderDialog();
+            TextBox_OutputDirectory.Text = openFolderDialog(); // Sets the textbox to display the selected directory
         }
 
+        /// <summary>
+        /// Opens a folder dialog for the user to select the directory.
+        /// </summary>
+        /// <returns>The selected directory or string.Empty if nothing was selected.</returns>
         private String openFolderDialog()
         {
+            // Uses Okii dialog for a nicer looking folder browser
             VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
+
+            // Don't allow the user to create an empty folder
+            // As it won't contain any files to rename
             folderBrowserDialog.ShowNewFolderButton = false;
 
+            // Stores the user's choice
             DialogResult result = folderBrowserDialog.ShowDialog();
 
             return result == DialogResult.OK ? folderBrowserDialog.SelectedPath : string.Empty;
         }
 
+        /// <summary>
+        /// Called when the user wishes to select a directory.
+        /// </summary>
         private void Button_ApplyRename_Click(object sender, EventArgs e)
         {
-            AddFilesToTable();
+            AddFilesToTable(); // Adds the retrieved files to the GridView
+        }
+
+        /// <summary>
+        /// Called when the user presses the apply button in the Filter tab.
+        /// </summary>
+        private void Button_ApplyFilterSort_Click(object sender, EventArgs e)
+        {
+            AddFilesToTable(); // Adds the retrieved files to the GridView
         }
 
         /// <summary>
@@ -168,25 +223,33 @@ namespace BulkFileNamer
             // Retrieves files from the selected directory
             List<FileInfo> filesFromDirectory = FileManager.GetFilesFromDirectory(GetCurrentDirectoryOptions(), TextBox_Directory.Text);
 
-            filesBindingSource.Clear();
+            filesBindingSource.Clear(); // Clears binding source of existing files
 
             FileInformation newFile; // Stores the current file being added to the BindingSource
+
+            // Stores the data to be added to the file information
             string directory;
             string originalFileName;
             string originalExtension;
             string renamedFileName;
             string renamedExtension;
+
+            // Iterates through each of the files found from the directory
             for (int i = 0; i < filesFromDirectory.Count; ++i)
             {
+                // Creates the information
                 directory = filesFromDirectory[i].DirectoryName;
                 originalFileName = filesFromDirectory[i].Name;
                 originalExtension = renamedExtension = filesFromDirectory[i].Extension;
                 renamedFileName = RenameManager.GetRenamedFile(GetCurrentRenameOptions(), originalFileName, i) + renamedExtension;
                 
+                // Creates the new file information
                 newFile = new FileInformation(directory, originalFileName, originalExtension, renamedFileName, renamedExtension);
            
-                filesBindingSource.Add(newFile);
+                filesBindingSource.Add(newFile); // Adds the file to the binding source, to display in the GridView
             }
+
+            // Updates the output text
             Label_Output.Text = "Retrieved a total of " + filesFromDirectory.Count + " files.";
         }
 
@@ -258,7 +321,7 @@ namespace BulkFileNamer
             {
                 using (Stream source = File.Open(files[i].Directory + "\\" + files[i].OriginalFileName, FileMode.Open))
                 {
-                    using (Stream destination = File.Create(files[i].Directory + "\\" + files[i].RenamedFileName))
+                    using (Stream destination = File.Create(TextBox_OutputDirectory.Text + "\\" + files[i].RenamedFileName))
                     {
                         await source.CopyToAsync(destination);
                         Label_Output.Text = "Renamed " + (i + 1) + " files.";

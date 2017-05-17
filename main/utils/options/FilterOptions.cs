@@ -37,10 +37,12 @@
         {
             ContainsText = containsText.ToLower();
 
+            // Adds the dot if there isn't one already
             FileExtension = (fileExtension.Length > 0 && fileExtension[0] != '.' ? "." : "") + fileExtension.ToLower();
+            
+            IsSortAscending = isSortAscending;
 
             SortOrder = sortOrder;
-            IsSortAscending = isSortAscending;
         }
     }
 }

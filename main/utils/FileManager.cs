@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using BulkFileNamer.main.utils.options;
 
 namespace BulkFileNamer.main.utils
 {
@@ -32,6 +33,32 @@ namespace BulkFileNamer.main.utils
                     }
                 }
             }
+
+            // Loops through each sort item from bottom to top
+            for (int i = options.SortOrder.Length - 1; i > -1; --i)
+            {
+                // Gets which sort option it currently is
+                // Sorts the list corresponding to which option is found
+                switch (options.SortOrder[i])
+                {
+                    case "File Name":
+                        files = files.OrderBy(file => file.Name).ToList();
+                        break;
+                    case "Date Created":
+                        files = files.OrderBy(file => file.CreationTime).ToList();
+                        break;
+                    case "Size":
+                        files = files.OrderBy(file => file.Length).ToList();
+                        break;
+                    case "File Extension":
+                        files = files.OrderBy(file => file.Extension).ToList();
+                        break;
+                    case "Date Modified":
+                        files = files.OrderBy(file => file.LastWriteTime).ToList();
+                        break;
+                }
+            }
+
             return files;
         }
     }
