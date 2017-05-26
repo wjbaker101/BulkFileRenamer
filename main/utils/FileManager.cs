@@ -58,6 +58,8 @@ namespace BulkFileNamer.main.utils
                         break;
                 }
             }
+            
+            if (!options.IsSortAscending) files.Reverse(); // Reverses list corresponding to the options
 
             return files;
         }

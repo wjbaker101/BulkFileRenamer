@@ -336,7 +336,7 @@ namespace BulkFileNamer
             this.splitContainer5.Panel2.Controls.Add(this.Button_Rename);
             this.splitContainer5.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer5.Size = new System.Drawing.Size(503, 537);
-            this.splitContainer5.SplitterDistance = 500;
+            this.splitContainer5.SplitterDistance = 503;
             this.splitContainer5.SplitterWidth = 1;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -350,7 +350,7 @@ namespace BulkFileNamer
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 5);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(503, 500);
+            this.tabControl1.Size = new System.Drawing.Size(503, 503);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -370,7 +370,7 @@ namespace BulkFileNamer
             this.tabPage1.Location = new System.Drawing.Point(0, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage1.Size = new System.Drawing.Size(503, 476);
+            this.tabPage1.Size = new System.Drawing.Size(503, 479);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Filter and Sorting";
             // 
@@ -511,7 +511,7 @@ namespace BulkFileNamer
             this.tabPage2.Location = new System.Drawing.Point(0, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage2.Size = new System.Drawing.Size(503, 485);
+            this.tabPage2.Size = new System.Drawing.Size(503, 479);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rename Rules";
             // 
@@ -677,7 +677,7 @@ namespace BulkFileNamer
             this.CheckBox_IndexingFormat.AutoSize = true;
             this.CheckBox_IndexingFormat.Checked = true;
             this.CheckBox_IndexingFormat.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBox_IndexingFormat.Location = new System.Drawing.Point(92, 357);
+            this.CheckBox_IndexingFormat.Location = new System.Drawing.Point(92, 351);
             this.CheckBox_IndexingFormat.Name = "CheckBox_IndexingFormat";
             this.CheckBox_IndexingFormat.Size = new System.Drawing.Size(103, 17);
             this.CheckBox_IndexingFormat.TabIndex = 49;
@@ -830,7 +830,7 @@ namespace BulkFileNamer
             this.tabPage3.Location = new System.Drawing.Point(0, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPage3.Size = new System.Drawing.Size(503, 485);
+            this.tabPage3.Size = new System.Drawing.Size(503, 476);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Output";
             // 
@@ -907,7 +907,7 @@ namespace BulkFileNamer
             this.Button_Rename.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button_Rename.Location = new System.Drawing.Point(3, 3);
             this.Button_Rename.Name = "Button_Rename";
-            this.Button_Rename.Size = new System.Drawing.Size(497, 30);
+            this.Button_Rename.Size = new System.Drawing.Size(497, 27);
             this.Button_Rename.TabIndex = 47;
             this.Button_Rename.Text = "Rename";
             this.Button_Rename.UseVisualStyleBackColor = false;

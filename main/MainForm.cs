@@ -9,6 +9,8 @@ using System.IO;
 using BulkFileNamer.main.utils;
 using BulkFileNamer.main.utils.gui;
 using BulkFileNamer.main.utils.options;
+using BulkFileNamer.main.controls.utils;
+using System.ComponentModel;
 
 namespace BulkFileNamer
 {
@@ -22,6 +24,11 @@ namespace BulkFileNamer
         /// Binding source for the data grid that will allow file information to be displayed.
         /// </summary>
         private BindingSource filesBindingSource;
+        
+        /// <summary>
+        /// Stores the total number of files that have successfully been renamed during the renaming process.
+        /// </summary>
+        private int totalRenamedFiles;
 
         /// <summary>
         /// Initialises the Form.
@@ -32,6 +39,20 @@ namespace BulkFileNamer
             InitializeComponent();
 
             this.Font = GuiStyle.Fonts.REGULAR;
+
+            Label_Directory.Font =
+            Label_Contains.Font =
+            Label_Extension.Font =
+            Label_Sort.Font =
+            Label_FileName.Font =
+            Label_Replace.Font =
+            Label_WithText.Font =
+            Label_Insert.Font =
+            Label_AtText.Font =
+            Label_Indexing.Font =
+            Label_IndexingStart.Font =
+            Label_IndexingLength.Font =
+            Label_OutputDirectory.Font = GuiStyle.Fonts.HEADING3;
 
             // Displays the sorting options in the ListBox
             for (int i = 0; i < SortOptions.OPTIONS.Length; ++i)
@@ -58,8 +79,14 @@ namespace BulkFileNamer
             DataGridView_Files.Columns.Add(column);
         }
 
+        /// <summary>
+        /// Called when the user clicks on the "Edit Original File Name" CheckBox.
+        /// Disables controls that are not needed when the CheckBox is checked.
+        /// Reason because the user does not need to insert or replace if they are creating a brand new file name.
+        /// </summary>
         private void CheckBox_OriginalName_CheckedChanged(object sender, EventArgs e)
         {
+            // Stores the controls that are relevant to the change
             Control[] editOriginalNameControls =
             {
                 TextBox_Replace,
@@ -70,14 +97,20 @@ namespace BulkFileNamer
                 RadioButton_FromEnd
             };
 
+            // Changes the Enabled state of all controls depending on whether the CheckBox is checked
             foreach (Control control in editOriginalNameControls)
             {
                 control.Enabled = CheckBox_OriginalName.Checked;
             }
 
+            // Changes the Enabled state of the textbox to the opposite of the CheckBox checked state
             TextBox_NewFileName.Enabled = !CheckBox_OriginalName.Checked;
         }
 
+        /// <summary>
+        /// Called when the user clicks on the "Enable Indexing" CheckBox.
+        /// Enables/Disables relevant controls depending on the Checked state of the CheckBox.
+        /// </summary>
         private void CheckBox_IndexingEnabled_CheckedChanged(object sender, EventArgs e)
         {
             // Creates an array of controls that should be enabled or disabled
@@ -167,6 +200,7 @@ namespace BulkFileNamer
             if (!newDirectory.Equals(string.Empty)) // Checks if the user actually chose a directory
             {
                 TextBox_Directory.Text = newDirectory; // Updates the text in the textbox
+                TextBox_OutputDirectory.Text = newDirectory; // Sets the output to the same location
 
                 AddFilesToTable(); // Displays the files in the folder
             }
@@ -220,37 +254,44 @@ namespace BulkFileNamer
         /// </summary>
         private void AddFilesToTable()
         {
-            // Retrieves files from the selected directory
-            List<FileInfo> filesFromDirectory = FileManager.GetFilesFromDirectory(GetCurrentDirectoryOptions(), TextBox_Directory.Text);
-
-            filesBindingSource.Clear(); // Clears binding source of existing files
-
-            FileInformation newFile; // Stores the current file being added to the BindingSource
-
-            // Stores the data to be added to the file information
-            string directory;
-            string originalFileName;
-            string originalExtension;
-            string renamedFileName;
-            string renamedExtension;
-
-            // Iterates through each of the files found from the directory
-            for (int i = 0; i < filesFromDirectory.Count; ++i)
+            if (TextBox_Directory.Text.Length > 0)
             {
-                // Creates the information
-                directory = filesFromDirectory[i].DirectoryName;
-                originalFileName = filesFromDirectory[i].Name;
-                originalExtension = renamedExtension = filesFromDirectory[i].Extension;
-                renamedFileName = RenameManager.GetRenamedFile(GetCurrentRenameOptions(), originalFileName, i) + renamedExtension;
-                
-                // Creates the new file information
-                newFile = new FileInformation(directory, originalFileName, originalExtension, renamedFileName, renamedExtension);
-           
-                filesBindingSource.Add(newFile); // Adds the file to the binding source, to display in the GridView
-            }
+                // Retrieves files from the selected directory
+                List<FileInfo> filesFromDirectory = FileManager.GetFilesFromDirectory(GetCurrentDirectoryOptions(), TextBox_Directory.Text);
 
-            // Updates the output text
-            Label_Output.Text = "Retrieved a total of " + filesFromDirectory.Count + " files.";
+                filesBindingSource.Clear(); // Clears binding source of existing files
+
+                FileInformation newFile; // Stores the current file being added to the BindingSource
+
+                // Stores the data to be added to the file information
+                string directory;
+                string originalFileName;
+                string originalExtension;
+                string renamedFileName;
+                string renamedExtension;
+
+                // Iterates through each of the files found from the directory
+                for (int i = 0; i < filesFromDirectory.Count; ++i)
+                {
+                    // Creates the information
+                    directory = filesFromDirectory[i].DirectoryName;
+                    originalFileName = filesFromDirectory[i].Name;
+                    originalExtension = renamedExtension = filesFromDirectory[i].Extension;
+                    renamedFileName = RenameManager.GetRenamedFile(GetCurrentRenameOptions(), originalFileName, i) + renamedExtension;
+
+                    // Creates the new file information
+                    newFile = new FileInformation(directory, originalFileName, originalExtension, renamedFileName, renamedExtension);
+
+                    filesBindingSource.Add(newFile); // Adds the file to the binding source, to display in the GridView
+                }
+
+                // Updates the output text
+                Label_Output.Text = "Retrieved a total of " + filesFromDirectory.Count + " files.";
+            }
+            else
+            {
+
+            }
         }
 
         /// <summary>
@@ -267,13 +308,31 @@ namespace BulkFileNamer
                 TextBox_WithText.Text,
                 TextBox_Insert.Text,
                 RadioButton_FromStart.Checked,
-                int.Parse(TextBox_AtText.Text),
+                ConvertToInt(TextBox_AtText.Text),
                 CheckBox_IndexingEnabled.Checked,
                 CheckBox_IndexingPrefix.Checked,
                 CheckBox_IndexingFormat.Checked,
-                int.Parse(TextBox_IndexingStart.Text),
-                int.Parse(TextBox_IndexingLength.Text)
+                ConvertToInt(TextBox_IndexingStart.Text),
+                ConvertToInt(TextBox_IndexingLength.Text)
             );
+        }
+
+        /// <summary>
+        /// Converts a string value to an int value.
+        /// Will return 1 if format is incorrect.
+        /// </summary>
+        /// <param name="input">The string to convert from.</param>
+        /// <returns>An int value converted from the input, or 1 if invalid int.</returns>
+        private int ConvertToInt(string input)
+        {
+            try
+            {
+                return int.Parse(input);
+            }
+            catch (Exception e)
+            {
+                return 1;
+            }
         }
 
         /// <summary>
@@ -295,41 +354,105 @@ namespace BulkFileNamer
         /// Called when the "Rename" button is clicked.
         /// Handles the renaming Task of selected files.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void Button_Rename_Click(object sender, EventArgs e)
+        private void Button_Rename_Click(object sender, EventArgs e)
         {
-            if (TextBox_Directory.Text != string.Empty)// Checks whether the user has actually entered a directory
+            if (TextBox_Directory.Text != string.Empty) // Checks whether the user has actually entered a directory
             {
-                // Creates the asyncronous Task for renaming the files
-                Task<int> rename = RenameFilesAsync(filesBindingSource.List.Cast<FileInformation>().ToList());
-
-                int renamedFiles = await rename; // Awaits the total number of renamed files
-
-                Label_Output.Text = "Renaming Finished! Total of " + renamedFiles + " files renamed.";
+                RenameFiles();
             }
         }
 
         /// <summary>
-        /// 
+        /// Asyncronously renames the files from the selected location.
         /// </summary>
-        /// <param name="files"></param>
-        /// <returns></returns>
-        private async Task<int> RenameFilesAsync(List<FileInformation> files)
+        private void RenameFiles()
         {
+            // Creates a background worker
+            // Will run code in a new thread
+            BackgroundWorker worker = new BackgroundWorker();
+
+            worker.DoWork += Worker_DoWork;
+
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+            worker.RunWorkerAsync(); // Start renaming process
+        }
+
+        /// <summary>
+        /// Does the process of renaming the files.
+        /// </summary>
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<FileInformation> files = filesBindingSource.List.Cast<FileInformation>().ToList();
+
+            totalRenamedFiles = 0;
+
+            // Iterates through each of the files so that it can be renamed
             for (int i = 0; i < files.Count; ++i)
             {
-                using (Stream source = File.Open(files[i].Directory + "\\" + files[i].OriginalFileName, FileMode.Open))
-                {
-                    using (Stream destination = File.Create(TextBox_OutputDirectory.Text + "\\" + files[i].RenamedFileName))
-                    {
-                        await source.CopyToAsync(destination);
-                        Label_Output.Text = "Renamed " + (i + 1) + " files.";
-                    }
-                }
-            }
+                File.Move(files[i].Directory + "\\" + files[i].OriginalFileName, TextBox_OutputDirectory.Text + "\\" + files[i].RenamedFileName);
 
-            return 1;
+                SetText("Renamed " + ++totalRenamedFiles + " files.");
+            }
+        }
+
+        /// <summary>
+        /// Called when the renaming process has been completed.
+        /// </summary>
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SetText("Renaming Finished! Total of " + totalRenamedFiles + " files renamed.");
+        }
+
+        delegate void SetTextCallback(string text);
+
+        /// <summary>
+        /// Sets the text of the output label so that it will work from another thread.
+        /// </summary>
+        /// <param name="text">New text for the output label.</param>
+        private void SetText(string text)
+        {
+            // https://stackoverflow.com/a/10775421
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (Label_Output.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                SetOutputMessage(text, MessageType.REGULAR);
+            }
+        }
+
+        /// <summary>
+        /// Sets the Output Label to the given text.
+        /// Also allows the type of message to be passed so that font colour is applied.
+        /// </summary>
+        /// <param name="message">The new text for the label.</param>
+        /// <param name="messageType">The type of message.</param>
+        private void SetOutputMessage(string message, MessageType messageType)
+        {
+            Label_Output.Text = message;
+
+            // Changes the colour of the label depending on the message type
+            switch (messageType)
+            {
+                case MessageType.ERROR:
+                    Label_Output.ForeColor = GuiStyle.Colours.ERROR;
+                    break;
+                case MessageType.SUCCESS:
+                    Label_Output.ForeColor = GuiStyle.Colours.SUCCESS;
+                    break;
+                case MessageType.WARNING:
+                    Label_Output.ForeColor = GuiStyle.Colours.WARNING;
+                    break;
+                default:
+                    Label_Output.ForeColor = GuiStyle.Colours.REGULAR;
+                    break;
+            }
         }
     }
 }
